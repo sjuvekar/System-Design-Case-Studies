@@ -12,7 +12,8 @@
 3. ~10TB of storage over five years
 
 ## Abstract Architecture
-Abstract Architecture has three layers
+Abstract Architecture has two layers
+
 1. Application Layer:
   * Shortening Service: Get the URL request from the user and shorten
   * Redirection Service: Get a shortened URL and redirect it to the original URL
