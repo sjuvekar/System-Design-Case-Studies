@@ -13,5 +13,13 @@
 3. 10M views per day
 
 ### Abstract Architecture
-
+1. Application layer behind a load balancer
+  * Takes user requests of multiple form: list, login, Credit-Card info and the directs them to various service
+2.Database Layer: Replicated NoSQL Database
+  * User object: Contains names, password hashes, history (MongoDB's arraytypes as a starting point)
+  * Movie Objects: Name, theatre id, showtime, ticket count
+3. Caching:
+4. Static contents: Very media-heavy like movie trailers, posters and cast info, Served through CDNs (Akamai, Amazon etc). 
+   * Insert a movie-related static contents in CDN when a movie is added to the DB. These remain fixed as long as the movie is running.
+   * Remove the movie-related static contents from CDN when the movie stops running in theaters.
 ### Operations
