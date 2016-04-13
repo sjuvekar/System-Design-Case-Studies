@@ -18,6 +18,7 @@
 2.Database Layer: Replicated NoSQL Database
   * User object: Contains names, password hashes, history (MongoDB's arraytypes as a starting point)
   * Movie Objects: (name, showtime, theater, expiry) of a movie
+  * Persistant layer for user session
 3. Transaction Layer:
   * Memcached to return an accurate count of available number of tickets for a Movie object. Design decision: Should these be dedicated application servers or can the computation be done using MemCached?
   * This layer also takes care of a ticket purchase through transaction lock. 
@@ -27,3 +28,12 @@
   * Caching all movie-ids for listing them (Redis or Memcached)? A listing of movies should be served from this cache and should never query the databases.
 5. Static contents: Very media-heavy like movie trailers, posters and cast info, Served through CDNs (Akamai, Amazon etc). 
    * Insert a movie-related static contents in CDN when a movie is added to the DB. These remain fixed as long as the movie is running.
+   * An application server can also periodically query memcached for currently running movies and upload an entire static list of movies to CDN
+
+### Operations
+1. List: 
+   * A user visit this site and an application server directly returns a list of currently running movies through memcached
+   * The list of movies can be dynamically constructed from cached movie objects in memcached based on users geolocation and current time (closest theatre or closest showtime)
+2. Details: Servered through cached movie object in memcached
+3. Login: Login request sent over SSL, a user session is created in persistant storage and appropriate cookie is returned to the user. 
+4. Buy: Buy request is routed through load balancer to an app server which performs appropriate transaction for the movie object on memcached. Once transaction succeeds, it sends appropariate token back to the user. Once this is done, it updates a user object's buy history and stores it back to the database through slow path.
