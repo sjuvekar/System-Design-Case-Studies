@@ -8,6 +8,9 @@
 5. Seller: List a show/movie for a seller?
 
 ### Scale of the problem
+1. About 50 active movie listings at a time with 6 shows per day per movie on an average. Assume a movie plays at around 1000 locations throughout the country
+2. About 1M ticket sales per day ~ 10 sales per second
+3. 10M views per day
 
 ### Abstract Architecture
 
