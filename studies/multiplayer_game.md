@@ -29,5 +29,7 @@
   * Join an existing game: Load balancer directs the user to the appropriate application server. The application server fetches its session information from memcache. Inserts user's information (browser, ip and a user_id etc) in the session. Also sends a cookie to user that contains standard fields along with an internal id representing app server and session info. Any subsequent request from this user must contain this cookie.
   * Create a new game: Load balancer directs the user to next 'free' app server. Most of the remaining steps are identical to above
   * Signup/Login: Presents a login form, updates the user database right away and sends login session cookie to the user. An entire architecture for user session management using memcached (http://highscalability.com/blog/2008/11/2/strategy-how-to-manage-sessions-using-memcached.html)
-  * 
+2. A user can make a move in an existing game
+  * App server validates the move, performs entire game logic to update score etc. (In fact, part of game validation or game logic can be performed in user's own browser using JS). 
+  * Once the move is complete, the app server updates memcache with (move_id, game_id, user_who_made_move) tuple. The worker queues query memcahe periodicaly and store these fresh tuples in a bunch in Game Database.
 
