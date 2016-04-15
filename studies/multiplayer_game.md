@@ -24,4 +24,10 @@
 5. Worker queues
   * One queue can be used in slow path to update the game database after a player makes a move for a particular game. (Store player_id, move_id, game_id in database and also icrement move_id for that game)
 
+### Operations
+1. The load balancer keeps a list of currently running game and also sends to the app server serving the landing page. A user can do few things as soon as he/she visits the website
+  * Join an existing game: Load balancer directs the user to the appropriate application server. The application server fetches its session information from memcache. Inserts user's information (browser, ip and a user_id etc) in the session. Also sends a cookie to user that contains standard fields along with an internal id representing app server and session info. Any subsequent request from this user must contain this cookie.
+  * Create a new game: Load balancer directs the user to next 'free' app server. Most of the remaining steps are identical to above
+  * Signup/Login: Presents a login form, updates the user database right away and sends login session cookie to the user. An entire architecture for user session management using memcached (http://highscalability.com/blog/2008/11/2/strategy-how-to-manage-sessions-using-memcached.html)
+  * 
 
