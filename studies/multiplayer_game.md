@@ -6,4 +6,7 @@
 3. Audit/History: Save previous played games and reload them for a review
 
 ### Scale of the Problem
-1. 
+1. ~100 simultaneous games
+2. ~100k users
+3. A few power users (playing ~1000 games per month) and many small-time users
+
