@@ -33,3 +33,4 @@
   * App server validates the move, performs entire game logic to update score etc. (In fact, part of game validation or game logic can be performed in user's own browser using JS). 
   * Once the move is complete, the app server updates memcache with (move_id, game_id, user_who_made_move) tuple. The worker queues query memcahe periodicaly and store these fresh tuples in a bunch in Game Database.
 
+### Persistance and Scalability issues?
