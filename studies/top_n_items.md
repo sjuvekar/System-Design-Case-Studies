@@ -20,5 +20,6 @@
 3. Worker Queues
   * A regular app server maintains a worker queue and pushes every new word to the queue. The queue has a responsibility to push new results in a bunch to the database. (Maybe update the cache first and then the cache updates the database).
 4. Caching
-  * Let's say that we decide hto go with a relational database. We maintain a memcahced t
-### Scaling
+  * Let's say that we decide to go with a relational database. We maintain a memcahced to cache top results. Every top-N query is routed to memcached and immediately gets an answer through cache. A worker queue updates memcached using its own results. Memcached updates the database at regular interval (every minute?) and refreshes itself using order-by query from the database. (Caching database index for order-by query to speed up memcache update). 
+
+### Bottlenecks and Scaling
