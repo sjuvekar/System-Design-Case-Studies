@@ -24,7 +24,8 @@ This is a quick overview of different techniques and algorithms: https://neil.fr
 
 ### Operations
 1. A user starts editing a document. Load balancers check for document's id and check if it is currently being updated. In that case, it routers the user to the corresponding app server. Also sends a cookie back to the user with the unique internal id of the app server for session maintainance. 
-2. The app server uses its incremental merge algorithm to edit the document. It also periodically saves the snapshot of the document to memcached every 1 second.
+2. If the document is not currently edited, load balancer selects an app-server using its scheduling policy. The app server performs a DB query to fetch the document.
+2. The app server then uses its incremental merge algorithm to edit the document. It also periodically saves the snapshot of the document to memcached every 1 second.
 3. Memcached saves its own documents to a relational database periodically.
 
 ### Bottlenecks
