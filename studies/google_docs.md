@@ -29,3 +29,7 @@ This is a quick overview of different techniques and algorithms: https://neil.fr
 3. Memcached saves its own documents to a relational database periodically.
 
 ### Bottlenecks
+1. App server could crash: In that case, load balancer restores most recent copy of document from Memcached to a fresh app server, updates its state, sends a fresh cookie to the user. All intermediate changes are lost
+2. Long queue at an app server resulting in delayed response to the user: (can't think of a solution)
+3. DB/cache failure: Use standard replicated architecture.
+4. One user getting constant merge conflicts because of slow connection
