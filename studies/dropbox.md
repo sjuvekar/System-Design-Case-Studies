@@ -25,6 +25,8 @@ An excellent talk is here: https://www.youtube.com/watch?v=PE4gwstWhmc
 4. Load Balancers
    * All requests to app servers go through load balancers
 5. File Stores for backup
+6. Metadata servers
+   * All logs of user interactions, user sessions etc stored in these
 
 ### Operations
 
