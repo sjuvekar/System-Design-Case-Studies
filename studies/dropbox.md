@@ -17,6 +17,17 @@ An excellent talk is here: https://www.youtube.com/watch?v=PE4gwstWhmc
 3. Very high write/read ratio (almost 1:1)
 
 ### Abstract Architecture
+1. Read-Write App Servers
+   * A sync operation happens on read-write server
+2. Push servers
+   * A CRUD operation takes place on one push server. The results of the operation are pushed back to the client
+3. Database
+   * NoSQL database to store file objects
+4. Memcache
+   * All app servers periodically write their results to memcache
+5. Load Balancers
+   * All requests to app servers go through load balancers
+6. File Stores for backup
 
 ### Operations
 
