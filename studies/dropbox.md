@@ -12,6 +12,9 @@ An excellent talk is here: https://www.youtube.com/watch?v=PE4gwstWhmc
    * Durability: Must be highly available
 
 ### Scale of the Problem
+1. 10 million users
+2. 100 million requests per day
+3. Very high write/read ratio (almost 1:1)
 
 ### Abstract Architecture
 
