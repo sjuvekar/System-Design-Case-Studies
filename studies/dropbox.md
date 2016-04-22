@@ -19,7 +19,7 @@ An excellent talk is here: https://www.youtube.com/watch?v=PE4gwstWhmc
 1. Read-Write App Servers
    * A sync operation happens on read-write server
 2. Database
-   * NoSQL database to store file objects
+   * NoSQL database to store metadata related to users, files
 3. Memcache
    * All app servers periodically write their results to memcache
 4. Load Balancers
@@ -27,6 +27,8 @@ An excellent talk is here: https://www.youtube.com/watch?v=PE4gwstWhmc
 5. File Stores for backup
 6. Metadata servers
    * All logs of user interactions, user sessions etc stored in these
+7. Distributed filesystem
+   * Storing actual file objects
 
 ### Operations
 
