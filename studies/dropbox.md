@@ -31,5 +31,6 @@ An excellent talk is here: https://www.youtube.com/watch?v=PE4gwstWhmc
    * Storing actual file objects
 
 ### Operations
-
+1. A user's login goes through load-balancer to one of the metadata servers that performs authentication/session management work and sends a cookie back to user. THe cookie, along with usual session-related parameters, also contains internal id of read-write server that all subsequent requests from this user must be directed to.
+2. 
 ### Bottlenecks
